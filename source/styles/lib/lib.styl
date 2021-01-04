@@ -1,0 +1,208 @@
+
+_em(fs, relative = 0)
+	if relative
+		return round( unit( fs / relative , em ), 2 )
+	else
+		return round( unit( fs / $font-size , em ), 2 )
+
+
+_rem(fs)
+	return round( unit( fs / $font-size , rem ), 2 )
+
+
+_line-height(lh, fs)
+	return unit(round( lh / fs, 2 ), '')
+
+
+_buildTransition(keys)
+	_out = ''
+
+	_outProperty = ''
+	_outDuration = ''
+	_outDelay = ''
+	_outFunction = $transition-function
+
+	if length(keys) == 1
+		_outProperty = keys
+
+	else
+		// take prop
+		for key in keys
+			if (key == def || key == 'default' || key == 'def') && !(_outProperty == '')
+				_outDuration = $transition-duration
+
+			else if typeof(key) == 'ident' && !_outProperty
+				_outProperty = key
+
+			else if typeof(key) == 'unit' && !_outDuration
+				_outDuration = key
+
+			else if typeof(key) == 'unit' && !_outDelay
+				_outDelay = key
+
+	if !_outDuration || _outDuration == ''
+		_outDuration = $transition-duration
+
+	if _outProperty
+		_out += _outProperty
+
+	if _outDuration
+		_out += ' ' + _outDuration
+
+	if _outDelay
+		_out += ' ' + _outDelay
+
+	if _outFunction
+		_out += ' ' + _outFunction
+
+	return _out
+
+
+_tr(props...)
+	$str = ''
+
+	for prop in props
+
+		if prop == props[len(props)-1]
+			$str += _buildTransition(prop)
+
+		else
+			$str += _buildTransition(prop) + ', '
+
+	transition unquote($str)
+
+
+_ww()
+	white-space normal
+	word-wrap break-word
+	// chrome
+	word-break break-word
+
+
+_toggle($size = 35px, $color = #000, $bg-color = #fff, $border = 1px solid black, $thickness = 2px)
+	background $bg-color
+	border $border
+	outline none
+
+	float right
+	width $size
+	height $size
+	margin 0
+	display none
+	border-radius 4px
+
+	span
+		position relative
+		display block
+
+		&:after,
+		&:before
+			content ""
+			position absolute
+			left 0
+			top ( $size / 5 ) * -1
+
+		&:after
+			top ( $size / 5 )
+
+	span, span:after, span:before
+		width 100%
+		height $thickness
+		background-color $color
+		transition all 0.3s
+		backface-visibility hidden
+		border-radius 2px
+
+	/* on activation */
+	&.active span,
+	&.open span
+		background-color transparent
+
+	&.active span:before,
+	&.open span:before
+		transform rotate(45deg) translate($size / 7,  $size / 7)
+
+	&.active span:after,
+	&.open span:after
+		transform rotate(-45deg) translate($size / 7, $size / -7)
+
+
+// +media(from\to xs\sm\md\lg\xl)
+// +media(from md to lg)
+media(_dir)
+
+	if length(_dir) == 2
+		_res = _dir[1]
+		_size = $media[_res]['from']
+		_pos = _dir[0]
+
+		if _pos == 'from'
+			@media screen and (min-width: _size)
+				{block}
+
+		else if _pos == 'to'
+			@media screen and (max-width: _size - 1)
+				{block}
+
+	else
+		_from = $media[ _dir[1] ]['from']
+		_to = $media[ _dir[3] ]['from']
+
+		@media screen and (min-width: _from) and (max-width: _to - 1)
+			{block}
+
+
+// _('height', $_admin['some'], 'calc(100vh - %)')
+_($prop, $values, $template = null, $dir = from)
+
+	for $med, $size in $values
+
+		+media($dir $med)
+			if $template
+				{$prop}: $template % $size
+			else
+				{$prop}: $size
+
+
+// crop text by css (-webkit- ellipsis only)
+_crop-text(lines = 1, fs = $font-size, lh = $line-height)
+	overflow hidden
+	text-overflow ellipsis
+	// display -webkit-box
+	// -webkit-line-clamp $lines
+	// -webkit-box-orient vertical
+
+	if lines == 1
+		white-space nowrap
+
+	else
+		max-height (lines * fs * lh)
+
+
+_link($color = false, $exclude-transition = false)
+	border-bottom 1px solid transparent
+
+	unless $exclude-transition
+		_tr(border-color)
+
+	&:hover
+		if $color
+			color $color
+			border-color $color
+
+		else
+			border-color currentColor
+
+
+clearfix()
+	zoom 1
+
+	&:before,
+	&:after
+		content "."
+		display block
+		height 0
+		overflow hidden
+
+	&:after
+		clear both

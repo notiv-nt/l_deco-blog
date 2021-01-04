@@ -1,0 +1,31 @@
+
+.btn
+	display inline-block
+	vertical-align middle
+	font inherit
+	outline none
+	background $main-color
+	border 2px solid @background
+	color white
+	text-transform uppercase
+	padding 7px 20px
+	line-height 28px
+	box-shadow $controls-box-shadow
+	letter-spacing 2px
+	font-size 12px
+	font-weight 700
+	text-align center
+	cursor pointer
+	user-select none
+	// not sure
+	white-space nowrap
+
+	_tr(background, border-color)
+
+	&:hover
+		background lighten($main-color, 8%)
+		border-color @background
+
+	&:focus:not(:hover)
+		outline 1px solid $main-color
+		outline-offset 2px

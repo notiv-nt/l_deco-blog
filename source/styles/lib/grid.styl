@@ -1,0 +1,262 @@
+
+//
+// npm i -g stylus
+// stylus -w main.styl
+//
+//
+// Example:
+//   https://github.com/notiv-nt/grid-examples
+//
+
+
+/**
+ * Global variables
+ */
+// $debug = false
+
+
+/**
+ * mean maximum you will use,
+ * if you use maximum 5 colums, set 5 here,
+ * 12 by default, as other grids
+ */
+// $grid-count = 12
+
+/**
+ * spacing between columns (!!! margin !!!)
+ */
+// $grid-spacing = 2rem
+
+/* Media config */
+// $media = {
+//  md: {
+//    from: 300px,
+//    to: 400px,
+//    grid_max_width: 280px
+//  },
+//  ...
+// }
+
+
+_grid(name)
+
+	for i in (1..$grid-count)
+
+		// grid-col="xs-order-4"
+		[grid-col~={"'" + name + "-order-" + i + "'"}]
+			order i
+
+		[grid-col~={"'" + name + "-" + i + "'"}]
+			// flex '0 0 calc(100% / %s * %s - %s)' % ($grid-count i $grid-spacing)
+			width 'calc(100% / %s * %s - %s)' % ($grid-count i $grid-spacing)
+			max-width 'calc(100% / %s * %s - %s)' % ($grid-count i $grid-spacing)
+
+			[grid-row~="narrow"] > &
+				// flex '0 0 calc(100% / %s * %s)' % ($grid-count i)
+				width 'calc(100% / %s * %s)' % ($grid-count i)
+				max-width 'calc(100% / %s * %s)' % ($grid-count i)
+
+		// [grid-row="xs-5 md-3"]
+		// on xs> will be 5 columns, on sm> 3
+		// TODO: must grid-col be empty ? sure ?
+		[grid-row~={"'" + name + "-" + i + "'"}] > [grid-col=""]
+			// flex '0 0 calc(100% / %s - %s)' % (i $grid-spacing)
+			width 'calc(100% / %s - %s)' % (i $grid-spacing)
+			max-width 'calc(100% / %s - %s)' % (i $grid-spacing)
+
+		[grid-row~={"'" + name + "-" + i + "'"}][grid-row~="narrow"]
+			& > [grid-col=""]
+				// flex '0 0 calc(100% / %s)' % (i)
+				width 'calc(100% / %s)' % (i)
+				max-width 'calc(100% / %s)' % (i)
+
+
+row-config(name = null, only = false)
+	// -xs
+	_q = name ? '-' + name : ''
+	// -only-xs
+	_q = only ? '-only' + _q : _q
+
+	// horizontal
+	[grid-row~={"'justify-start" + _q + "'"}]
+		justify-content flex-start
+
+		.is-ie &
+			text-align left
+
+	[grid-row~={"'justify-end" + _q + "'"}]
+		justify-content flex-end
+
+		.is-ie &
+			text-align right
+
+	[grid-row~={"'justify-center" + _q + "'"}]
+		justify-content center
+
+		.is-ie &
+			text-align center
+
+	[grid-row~={"'justify-between" + _q + "'"}]
+		justify-content space-between
+
+		.is-ie &
+			text-align justify
+			-moz-text-align-last justify
+			-webkit-text-align-last justify
+			text-align-last justify
+
+	[grid-row~={"'justify-around" + _q + "'"}]
+		justify-content space-around
+
+		.is-ie &
+			text-align justify
+
+	// vertical
+	[grid-row~={"'align-start" + _q + "'"}]
+		align-items flex-start
+
+		.is-ie & > [grid-col]
+			vertical-align top
+
+	[grid-row~={"'align-end" + _q + "'"}]
+		align-items flex-end
+
+		.is-ie & > [grid-col]
+			vertical-align bottom
+
+	[grid-row~={"'align-center" + _q + "'"}]
+		align-items center
+
+		.is-ie & > [grid-col]
+			vertical-align middle
+
+	[grid-row~={"'align-baseline" + _q + "'"}]
+		align-items baseline
+
+		.is-ie & > [grid-col]
+			vertical-align middle
+
+	[grid-row~={"'align-stretch" + _q + "'"}]
+		align-items stretch
+
+		.is-ie & > [grid-col]
+			vertical-align top
+
+
+	// vertical content
+	[grid-row~={"'content-start" + _q + "'"}]    { align-content: flex-start; }
+	[grid-row~={"'content-end" + _q + "'"}]      { align-content: flex-end; }
+	[grid-row~={"'content-center" + _q + "'"}]   { align-content: center; }
+	[grid-row~={"'content-between" + _q + "'"}]  { align-content: space-between; }
+	[grid-row~={"'content-around" + _q + "'"}]   { align-content: space-around; }
+	[grid-row~={"'content-stretch" + _q + "'"}]  { align-content: stretch; }
+
+	// direction
+	[grid-row~={"'direction-row" + _q + "'"}]             { flex-direction: row; }
+	[grid-row~={"'direction-row-reverse" + _q + "'"}]     { flex-direction: row-reverse; }
+	[grid-row~={"'direction-column" + _q + "'"}]          { flex-direction: column; }
+	[grid-row~={"'direction-column-reverse" + _q + "'"}]  { flex-direction: column-reverse; }
+
+	// wrap
+	[grid-row~={"'nowrap" + _q + "'"}]         { flex-wrap: nowrap; }
+	[grid-row~={"'wrap" + _q + "'"}]           { flex-wrap: wrap; }
+	[grid-row~={"'wrap-reverse" + _q + "'"}]   { flex-wrap: wrap-reverse; }
+
+
+
+grid-make(name, min = null, max = null, grid-width = null)
+
+	@media screen and (min-width: min)
+		[grid]:not([grid~="fluid"])
+			max-width grid-width
+
+		_grid(name)
+		row-config(name)
+
+
+	if max != null
+		@media screen and (min-width: min) and (max-width: max)
+			row-config(name, true)
+
+			if grid-width == none
+				[grid]
+					padding-left $grid-spacing * .5
+					padding-right @padding-left
+
+			if $debug == true
+				body:after
+					content name + ', ' + min + ' — ' + max
+
+	else
+		@media screen and (min-width: min)
+			row-config(name, true)
+
+			if grid-width == none
+				[grid]
+					padding-left $grid-spacing * .5
+					padding-right @padding-left
+
+			if $debug == true
+				body:after
+					content name + ', ' + min
+
+
+
+if $debug == true
+	body:after
+		position fixed
+		bottom .5rem
+		right .5rem
+		border-radius 2px
+		background-color rgba(0, 0, 0, .7)
+		color #fff
+		padding .5rem .8rem
+		font-size 11px
+		letter-spacing 1px
+		z-index 99999
+
+[grid]
+	margin-left auto
+	margin-right auto
+
+[grid~="fluid"]
+	padding-left $grid-spacing * .5
+	padding-right @padding-left
+
+[grid-row]
+	display flex
+	flex-wrap wrap
+
+	&:not([grid-row~="narrow"]):not([grid-col])
+		margin-left -($grid-spacing / 2)
+		margin-right @margin-left
+
+	.is-ie &
+		font-size 0
+
+[grid-col~="max"]
+	flex-grow 1
+
+// TODO: rewrite on :has('narrow' > &)
+[grid-col]
+	margin-left ($grid-spacing / 2)
+	margin-right @margin-left
+
+	.is-ie &
+		display inline-block
+		font-size 1rem
+
+	[grid-row~="narrow"] > &
+		margin-left 0
+		margin-right 0
+
+
+row-config()
+
+
+grid-make('xs', $media.xs.from, $media.xs.to, $media.xs.grid_max_width)
+grid-make('sm', $media.sm.from, $media.sm.to, $media.sm.grid_max_width)
+grid-make('md', $media.md.from, $media.md.to, $media.md.grid_max_width)
+grid-make('lg', $media.lg.from, $media.lg.to, $media.lg.grid_max_width)
+grid-make('xl', $media.xl.from, $media.xl.to, $media.xl.grid_max_width)
+grid-make('hg', $media.hg.from, $media.hg.to, $media.hg.grid_max_width)

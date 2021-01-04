@@ -1,0 +1,54 @@
+
+@import './imp'
+
+@import './base'
+
+
+#app-root
+	position relative
+	z-index 1
+
+
+.boot-loader
+	width 100vw
+	height 100vh
+	position fixed
+	top 0
+	left 0
+	z-index -1
+	background #f4f4f4
+	color #222
+	display flex
+	align-items center
+	justify-content center
+
+	&__content
+		animation show-loader 1000ms linear forwards
+
+	&__spinner
+		height 40px
+		width @height
+		line-height @height
+		display inline-block
+		vertical-align middle
+		margin-right 20px
+		border-width 3px
+		border-style solid
+		border-color rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) #222
+		border-radius 100%
+		animation spin .6s linear infinite
+
+
+@keyframes spin
+	to
+		transform rotate(360deg) translatez(0)
+
+
+@keyframes show-loader
+	from, 70%
+		opacity 0
+		visibility hidden
+
+	to
+		opacity 1
+		visibility visible

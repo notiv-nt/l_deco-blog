@@ -1,0 +1,12 @@
+{
+	"map": {
+		"url": "https://api-maps.yandex.ru/services/constructor/1.0/static/?sid=aHi3f4rKqkp-kVMqphSeHcNv6fIBKgWf&amp;width=440&amp;height=290&amp;lang=ru_RU&amp;sourceType=constructor"
+	},
+
+	"contact": {
+		"text": "In case you some aquestions popped in your’s mind, FeIn case you some aquestions popped in your’el email or even visit us.",
+		"address": "123 Street Name, City Name, United States.",
+		"email": "info@lifestyle.com.",
+		"site": "www.lifestyle.com"
+	}
+}

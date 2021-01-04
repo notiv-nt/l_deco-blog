@@ -1,0 +1,40 @@
+doctype html
+<!--[if IE]>
+<html lang="en" class="is-ie">
+<![endif]-->
+
+<!--[if !IE]> -->
+<html lang="en" class="not-ie">
+<!-- <![endif]-->
+
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+
+		title Document
+
+		link(href="assets/css/boot.css" rel="stylesheet")
+
+	body
+		include /sprite.svg
+
+		.boot-loader
+
+			.boot-loader__content
+				.boot-loader__spinner
+
+				span Loading resources ...
+
+		#app-root
+
+			app-header
+
+			.router-wrap
+				transition-fade
+					router-view
+
+			app-footer
+
+		link(href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700|Montserrat:400,700" rel="stylesheet")
+		script(src="assets/js/main.js")

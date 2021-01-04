@@ -1,0 +1,48 @@
+{
+	"post": {
+		"id" : 0,
+		"image" : "http://unsplash.it/1200/800/?random",
+		"category" : "Travelling",
+		"title" : "Be the one to stand out in the crowed",
+		"author" : {
+			"username" : "dike_acalister_3",
+			"name" : "Dike AcAlister"
+		},
+		"date" : "Sat Jan 16 2016 11:43:50 GMT+0300",
+		"text" : "<p>This is Photoshop's version now we’s of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi eiilit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsans ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti have a great is the best sociosqu ad litora torquent per conubia nostra.</p>",
+		"comments" : 6,
+		"likes" : 25,
+		"rating" : "3.55"
+	},
+
+	"author": {
+		"avatar": "http://unsplash.it/200/200/?random",
+		"name": "Michell Beverly",
+		"about": "Patricia gives you the ability to let people actually read have your content, instead of focusing on all the other stuff that’s going on their screen."
+	},
+
+	"socials": {
+		"facebook": 28,
+		"twitter": 40,
+		"tumbler": 11,
+		"pinterest": 83
+	},
+
+	"recomended": [
+		{
+			"id" : 0,
+			"image" : "http://unsplash.it/340/220/?random",
+			"title" : "Girl on car vintage fashion"
+		},
+		{
+			"id" : 2,
+			"image" : "http://unsplash.it/340/220/?random",
+			"title" : "Women make a tea for cup"
+		},
+		{
+			"id" : 2,
+			"image" : "http://unsplash.it/340/220/?random",
+			"title" : "Be the one to stand out in the crowed"
+		}
+	]
+}

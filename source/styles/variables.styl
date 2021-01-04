@@ -1,0 +1,118 @@
+
+$font-size = 14px
+$line-height = 1.6
+$font = $font-size\/$line-height 'Hind', sans-serif
+
+$transition-duration = 250ms
+$transition-function = cubic-bezier(.5, 0, .2, 1)
+$transition = '%s %s' % ($transition-duration $transition-function)
+
+// $debug = true
+$grid-count = 12
+$grid-spacing = 26px
+
+
+$media = {
+	xs: {
+		from: 0,
+		to: 575px,
+		grid_max_width: none
+	},
+
+	sm: {
+		from: 576px,
+		to: 767px,
+		grid_max_width: 540px
+	},
+
+	md: {
+		from: 768px,
+		to: 991px,
+		grid_max_width: 720px
+	},
+
+	lg: {
+		from: 992px,
+		to: 1199px,
+		grid_max_width: 960px
+	},
+
+	xl: {
+		from: 1200px,
+		to: 1799px,
+		grid_max_width: 1140px
+	}
+
+	hg: {
+		from: 1800px,
+		grid_max_width: 1600px
+	}
+};
+
+
+$font-color = #424242
+$bg-color = #f9f9fb
+
+$main-color = #212121
+
+$controls-box-shadow = 0.6px 0.8px 1px rgba(234, 234, 235, 0.75)
+$block-box-shadow = 0 2px 3px rgba(230, 230, 230, 0.2)
+$light-shadow = 0 1px 2px rgba(200, 200, 200, 0.25)
+
+
+$adaptive = {
+
+	carouselItemHeight: {
+		xs: 360px,
+		sm: 400px,
+		md: 440px,
+		lg: 500px,
+		xl: 580px
+	},
+
+	postPoster: {
+		xs: 340px,
+		sm: 380px,
+		md: 300px,
+		lg: 270px,
+		xl: 400px,
+		hg: 490px
+	},
+
+	postContent: {
+		xs: 30px 10px,
+		sm: 30px 20px,
+		md: 30px,
+		lg: 40px,
+		xl: 50px,
+		hg: 60px,
+	},
+
+	postFooter: {
+		xs: 10px 10px,
+		sm: 10px 20px,
+		md: 15px 30px,
+		lg: 20px 40px,
+		xl: 25px 50px,
+		hg: 25px 60px,
+	},
+
+	postTitle: {
+		xs: 18px,
+		sm: 18px,
+		md: 22px,
+		lg: 24px,
+		xl: 26px,
+		hg: 28px,
+	},
+
+	postQuote: {
+		xs: 15px,
+		sm: 16px,
+		md: 17px,
+		lg: 18px,
+		xl: 19px,
+		hg: 20px,
+	},
+
+}

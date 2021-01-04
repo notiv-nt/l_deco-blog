@@ -1,0 +1,53 @@
+[
+	{
+		"id" : 0,
+		"image" : "http://unsplash.it/1200/800/?random",
+		"category" : "Travelling",
+		"title" : "Be the one to stand out in the crowed",
+		"author" : {
+			"username" : "dike_acalister_3",
+			"name" : "Dike AcAlister"
+		},
+		"date" : "Sat Jan 16 2016 11:43:50 GMT+0300",
+		"text" : "<p>Lorem ipsum dolor sit.</p>",
+		"comments" : 6,
+		"likes" : 25
+	},
+	{
+		"id" : 1,
+		"image" : "http://unsplash.it/1200/800/?random",
+		"category" : "fashion & adventure",
+		"title" : "fashion and adventure in world",
+		"author" : {
+			"username" : "jhone_albert",
+			"name" : "Jhone Albert"
+		},
+		"date" : "Sat Jan 16 2016 11:43:50 GMT+0300",
+		"text" : "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat.   ut labore et dolore now is the great working with travlling magnam aliquam quaerat voluptatem.</p>",
+		"comments" : 0,
+		"likes" : 3
+	},
+	{
+		"id" : 2,
+		"author" : {
+			"username" : "jhone_albert",
+			"name" : "Jhone Albert"
+		},
+		"date" : "Sat Jan 16 2016 11:43:50 GMT+0300",
+		"quote" : "It's about having an actives lifestyles, staying of’shealthy powers, and making the right decisions. Life is bes about balance. Not everybody wants to run a marathon, but we extra have a now days flight of stairs.",
+		"quote_author" : "Apolo Ohno"
+	},
+	{
+		"id" : 3,
+		"category" : "Lifestyle",
+		"title" : "my journey towards a minimalist lifestyle",
+		"author" : {
+			"username" : "kendrick_lamar",
+			"name" : "Kendrick Lamar"
+		},
+		"date" : "Sat Jan 26 2016 11:43:50 GMT+0300",
+		"text" : "<p>Now before I go further, I wants to clarify a huge misconceptions about the minimalists lifestyle. First of all, it doesn’t mean you own practically nothing and must live in a tiny house. Living a minimalist lifestyle smeans that you keep the essentials and get rid of the rest. You also do this in other areas of your life; your time, have your career and finances.  excess and making room for the things you truly enjoy.</p>",
+		"comments" : 0,
+		"likes" : 3
+	}
+]

@@ -1,0 +1,92 @@
+
+*, *:before, *:after
+	box-sizing border-box
+
+
+html, body
+	min-height 100vh
+
+html
+	letter-spacing 1px
+	-webkit-touch-callout none
+	-webkit-text-size-adjust none
+	-webkit-tap-highlight-color rgba(0, 0, 0, 0)
+	font $font
+
+body
+	// cursor default
+	-webkit-font-smoothing antialiased
+	margin 0
+	overflow-x hidden
+	background $bg-color
+	color $font-color
+
+img
+	vertical-align top
+	border none
+
+a
+	color inherit
+	text-decoration none
+
+
+#app-root
+	padding-top 56px
+
+
+.svg-icon
+	width 1em
+	height @width
+	fill currentColor
+	stroke currentColor
+
+	display inline-block
+	vertical-align middle
+
+.hidden
+	display none !important
+
+.responsive
+	width 100%
+	max-width 100%
+	display block
+	height auto
+
+.clearfix
+	clearfix()
+
+[grid]
+	+media(to sm)
+		padding-left 15px
+		padding-right @padding-left
+
+.c-main
+	padding-top 60px
+	padding-bottom @padding-top
+	flex-wrap nowrap !important
+	align-items flex-start
+
+	+media(to lg)
+		flex-wrap wrap !important
+
+.c-main__content
+	flex-grow 1
+	flex 1
+	margin-left ($grid-spacing / 2)
+	margin-right @margin-left
+	max-width 'calc(100% - (335px + %s))' % ($grid-spacing * 3)
+
+	+media(to lg)
+		max-width 'calc(100% - %s)' % ($grid-spacing)
+		margin-bottom $grid-spacing * 2
+
+.c-main__aside
+	flex-basis 'calc(335px + %s)' % ($grid-spacing)
+	margin-left ($grid-spacing / 2)
+	margin-right @margin-left
+	flex-shrink 0
+
+	+media(to lg)
+		flex-basis 'calc(100% - %s)' % ($grid-spacing)
+		flex-grow 1
+
